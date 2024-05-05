@@ -1,0 +1,44 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+</head>
+<body>
+<h1>Register</h1>
+<form id="registerForm">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br>
+  <label for="membershipPackage">Membership Package:</label><br>
+  <input type="text" id="membershipPackage" name="membershipPackage"><br><br>
+  <button type="submit">Register</button>
+</form>
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+    fetch('/api/members/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Registered successfully:', data);
+              window.location.href = '/login.html'; // Redirect to login page after registration
+            })
+            .catch(error => console.error('Error during registration:', error));
+  });
+</script>
+</body>
+</html>
