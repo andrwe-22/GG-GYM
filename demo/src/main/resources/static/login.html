@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+<form id="loginForm">
+    <h1>Вход</h1>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+    <button type="submit">Войти</button>
+</form>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        fetch('/api/members/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    sessionStorage.setItem('token', data.token); // Сохранение токена
+                    window.location.href = '/профиль.html'; // Перенаправление
+                } else {
+                    console.error('Ошибка входа');
+                }
+            })
+            .catch(error => console.error('Ошибка во время входа:', error));
+    });
+</script>
+</body>
+</html>

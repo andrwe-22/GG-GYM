@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация</title>
+  <link href="css/%20register.css" rel="stylesheet">
+</head>
+<body>
+
+<form id="registerForm">
+  <h1>Регистрация</h1>
+  <label for="name">Имя:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br>
+  <label for="membershipPackage">Пакет членства:</label><br>
+  <input type="text" id="membershipPackage" name="membershipPackage"><br><br>
+  <button type="submit">Зарегистрироваться</button>
+</form>
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+    fetch('/api/members/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Успешно зарегистрирован:', data);
+              window.location.href = '/login.html'; // Перенаправление на страницу входа после регистрации
+            })
+            .catch(error => console.error('Ошибка во время регистрации:', error));
+  });
+</script>
+</body>
+</html>

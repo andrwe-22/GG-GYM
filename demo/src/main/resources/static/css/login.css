@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../img/main/home-banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-width: 200px;
+    min-height:670px;
+    max-width: 100%;
+    max-height:100%;
+    margin: 0 auto;
+    overflow: auto;
+    color: #ffffff;
+}
+
+h1 {
+    text-align: center;
+     display: block;
+     color: #333;
+}
+
+form {
+    max-width: 300px;
+    margin: 100px auto;
+    background: rgba(255, 255, 255, 0.7); /* прозрачный белый фон формы */
+    padding: 100px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #333; /* цвет текста метки */
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #ae0001; /* новый цвет кнопки */
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="css/admin.css" rel="stylesheet">
+    <script>
+        window.onload = function() {
+            fetchTrainerData();
+            fetchScheduleData();
+            fetchFacultyData();
+        };
+
+        function fetchTrainerData() {
+            fetch("/api/trainers")
+                .then(response => response.json())
+                .then(data => {
+                    // Populate trainer dropdown menu dynamically
+                    let trainerDropdown = document.getElementById("trainer-dropdown");
+                    trainerDropdown.innerHTML = "<option value=''>Select Trainer</option>";
+                    data.forEach(trainer => {
+                        trainerDropdown.innerHTML += `
+                            <option value="${trainer.id}">${trainer.name}</option>
+                        `;
+                    });
+                })
+                .catch(error => console.error("Error fetching trainers:", error));
+        }
+
+        function fetchScheduleData() {
+            fetch("/api/schedules")
+                .then(response => response.json())
+                .then(data => {
+                    // Populate schedule dropdown menu dynamically
+                    let scheduleDropdown = document.getElementById("schedule-dropdown");
+                    scheduleDropdown.innerHTML = "<option value=''>Select Schedule</option>";
+                    data.forEach(schedule => {
+                        scheduleDropdown.innerHTML += `
+                            <option value="${schedule.id}">${schedule.day} - ${schedule.time}</option>
+                        `;
+                    });
+                })
+                .catch(error => console.error("Error fetching schedules:", error));
+        }
+
+        function fetchFacultyData() {
+            fetch("/api/faculties")
+                .then(response => response.json())
+                .then(data => {
+                    // Populate faculty dropdown menu dynamically
+                    let facultyDropdown = document.getElementById("faculty-dropdown");
+                    facultyDropdown.innerHTML = "<option value=''>Select Faculty</option>";
+                    data.forEach(faculty => {
+                        facultyDropdown.innerHTML += `
+                            <option value="${faculty.id}">${faculty.name}</option>
+                        `;
+                    });
+                })
+                .catch(error => console.error("Error fetching faculties:", error));
+        }
+
+        function saveSelection() {
+            let selectedTrainer = document.getElementById("trainer-dropdown").value;
+            let selectedSchedule = document.getElementById("schedule-dropdown").value;
+            let selectedFaculty = document.getElementById("faculty-dropdown").value;
+
+            // Example: send selected values to backend
+            fetch("/api/save-selection", {
+                method: "POST",
+                body: JSON.stringify({
+                    trainerId: selectedTrainer,
+                    scheduleId: selectedSchedule,
+                    facultyId: selectedFaculty
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Selection saved successfully!");
+                    } else {
+                        throw new Error("Failed to save selection");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error saving selection:", error);
+                    alert("Failed to save selection. Please try again later.");
+                });
+        }
+    </script>
+</head>
+<body><form>
+<h1>Admin</h1>
+<div id="trainer-info">
+    <h2>Trainers</h2>
+    <select id="trainer-dropdown">
+        <option value="">Select Trainer</option>
+        <!-- Trainer dropdown menu will be populated dynamically -->
+    </select>
+</div>
+<div id="schedule-info">
+    <h2>Schedules</h2>
+    <select id="schedule-dropdown">
+        <option value="">Select Schedule</option>
+        <!-- Schedule dropdown menu will be populated dynamically -->
+    </select>
+</div>
+<div id="faculty-info">
+    <h2>Faculties</h2>
+    <select id="faculty-dropdown">
+        <option value="">Select Faculty</option>
+        <!-- Faculty dropdown menu will be populated dynamically -->
+    </select>
+</div>
+<button onclick="saveSelection()">Save Selection</button>
+</form>
+</body>
+</html>
