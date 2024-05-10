@@ -44,6 +44,7 @@ public class MemberServiceImpl {
         return memberRepository.save(member);
     }
 
+
     public Optional<Member> login(String email) {
         return memberRepository.findByEmail(email);
     }

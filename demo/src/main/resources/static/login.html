@@ -13,6 +13,7 @@
     <input type="email" id="email" name="email"><br><br>
     <button type="submit">Войти</button>
 </form>
+
 <script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -28,7 +29,7 @@
             .then(data => {
                 if (data.token) {
                     sessionStorage.setItem('token', data.token); // Сохранение токена
-                    window.location.href = '/профиль.html'; // Перенаправление
+                    window.location.href = '/profile.html'; // Перенаправление
                 } else {
                     console.error('Ошибка входа');
                 }

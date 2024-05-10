@@ -8,6 +8,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 public class MemberDTO {
+
+
+    private Long id;
+
+    public MemberDTO(Long id, String name, String email, String membershipPackage, Long trainerId, Long scheduleId, Long facultyId, String trainerName, String scheduleDetails, String facultyName, Schedule schedule) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.membershipPackage = membershipPackage;
+        this.trainerId = trainerId;
+        this.scheduleId = scheduleId;
+        this.facultyId = facultyId;
+        TrainerName = trainerName;
+        ScheduleDetails = scheduleDetails;
+        FacultyName = facultyName;
+        this.schedule = schedule;
+    }
+    public MemberDTO(Long id, String name, String email, String membershipPackage) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.membershipPackage = membershipPackage;
+    }
+
+    public MemberDTO() {
+    }
+
     private String name;
     private String email;
     private String membershipPackage;
@@ -36,6 +63,14 @@ public class MemberDTO {
 
     public void setScheduleDetails(String scheduleDetails) {
         ScheduleDetails = scheduleDetails;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFacultyName() {
@@ -79,6 +114,7 @@ public class MemberDTO {
     }
 
     private Schedule schedule;
+
     public MemberDTO(String name, String email, String membershipPackage) {
         this.name = name;
         this.email = email;

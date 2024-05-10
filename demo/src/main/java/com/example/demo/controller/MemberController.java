@@ -81,6 +81,7 @@ public class MemberController {
         }
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
@@ -97,6 +98,7 @@ public class MemberController {
         Member savedMember = memberService.saveMember(member);
         return new ResponseEntity<>(savedMember, HttpStatus.CREATED);
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody MemberDTO memberDTO) {

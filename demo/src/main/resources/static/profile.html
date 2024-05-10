@@ -22,12 +22,15 @@
         <select id="facultySelect"></select>
     </div>
     <button onclick="updateProfile()">Обновить Профиль</button>
+    <script src="js/profile.js"></script>
     <script>
+
+
     const token = sessionStorage.getItem('token');
 
     window.onload = function() {
         if (!token) {
-            window.location.href = '/login.html';  // Redirect to login if no token
+            window.location.href = '/login.html';  // Redirect to log in if no token
         } else {
             fetchProfile();
             fetchDropdownData('/api/trainers/all', 'trainerSelect');
