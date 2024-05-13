@@ -5,9 +5,9 @@
 
 ![Logo](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/gg-high-resolution-logo.png)
 
-#Средства реализации
-Java “Spring boot”
-	JavaScript
-	HTML, CSS 
-MySQL
+# Средства реализации
+* Java “Spring boot”
+* JavaScript
+* HTML, CSS 
+* MySQL
 
