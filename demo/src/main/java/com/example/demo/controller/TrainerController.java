@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.MemberDTO;
+import com.example.demo.model.Member;
 import com.example.demo.model.Trainer;
 import com.example.demo.services.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +35,15 @@ public class TrainerController {
         return trainer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<Trainer> createTrainer(@RequestBody Trainer trainer) {
-        Trainer savedTrainer = trainerService.saveTrainer(trainer);
-        return new ResponseEntity<>(savedTrainer, HttpStatus.CREATED);
+        try {
+            Trainer savedTrainer = trainerService.saveTrainer(trainer);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedTrainer);
+        } catch (Exception e) {
+            System.out.println("Failed to create trainer: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -45,10 +52,22 @@ public class TrainerController {
         return ResponseEntity.noContent().build();
     }
 
+
     @GetMapping("/all")
     public ResponseEntity<List<Trainer>> getAllTrainers() {
         List<Trainer> trainers = trainerService.getAllTrainers();
         return ResponseEntity.ok(trainers);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Trainer> updateTrainer(@PathVariable Long id, @RequestBody Trainer updatedTrainer) {
+        return trainerService.getTrainerById(id)
+                .map(trainer -> {
+                    trainer.setName(updatedTrainer.getName());
+                    Trainer savedTrainer = trainerService.saveTrainer(trainer);
+                    return ResponseEntity.ok(savedTrainer);
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }

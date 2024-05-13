@@ -3,118 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <link href="css/admin.css" rel="stylesheet">
-    <script>
-        window.onload = function() {
-            fetchTrainerData();
-            fetchScheduleData();
-            fetchFacultyData();
-        };
-
-        function fetchTrainerData() {
-            fetch("/api/trainers")
-                .then(response => response.json())
-                .then(data => {
-                    // Populate trainer dropdown menu dynamically
-                    let trainerDropdown = document.getElementById("trainer-dropdown");
-                    trainerDropdown.innerHTML = "<option value=''>Select Trainer</option>";
-                    data.forEach(trainer => {
-                        trainerDropdown.innerHTML += `
-                            <option value="${trainer.id}">${trainer.name}</option>
-                        `;
-                    });
-                })
-                .catch(error => console.error("Error fetching trainers:", error));
-        }
-
-        function fetchScheduleData() {
-            fetch("/api/schedules")
-                .then(response => response.json())
-                .then(data => {
-                    // Populate schedule dropdown menu dynamically
-                    let scheduleDropdown = document.getElementById("schedule-dropdown");
-                    scheduleDropdown.innerHTML = "<option value=''>Select Schedule</option>";
-                    data.forEach(schedule => {
-                        scheduleDropdown.innerHTML += `
-                            <option value="${schedule.id}">${schedule.day} - ${schedule.time}</option>
-                        `;
-                    });
-                })
-                .catch(error => console.error("Error fetching schedules:", error));
-        }
-
-        function fetchFacultyData() {
-            fetch("/api/faculties")
-                .then(response => response.json())
-                .then(data => {
-                    // Populate faculty dropdown menu dynamically
-                    let facultyDropdown = document.getElementById("faculty-dropdown");
-                    facultyDropdown.innerHTML = "<option value=''>Select Faculty</option>";
-                    data.forEach(faculty => {
-                        facultyDropdown.innerHTML += `
-                            <option value="${faculty.id}">${faculty.name}</option>
-                        `;
-                    });
-                })
-                .catch(error => console.error("Error fetching faculties:", error));
-        }
-
-        function saveSelection() {
-            let selectedTrainer = document.getElementById("trainer-dropdown").value;
-            let selectedSchedule = document.getElementById("schedule-dropdown").value;
-            let selectedFaculty = document.getElementById("faculty-dropdown").value;
-
-            // Example: send selected values to backend
-            fetch("/api/save-selection", {
-                method: "POST",
-                body: JSON.stringify({
-                    trainerId: selectedTrainer,
-                    scheduleId: selectedSchedule,
-                    facultyId: selectedFaculty
-                }),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Selection saved successfully!");
-                    } else {
-                        throw new Error("Failed to save selection");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error saving selection:", error);
-                    alert("Failed to save selection. Please try again later.");
-                });
-        }
-    </script>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="/js/admin.js"></script>
 </head>
-<body><form>
-<h1>Admin</h1>
-<div id="trainer-info">
-    <h2>Trainers</h2>
-    <select id="trainer-dropdown">
-        <option value="">Select Trainer</option>
-        <!-- Trainer dropdown menu will be populated dynamically -->
-    </select>
+<body>
+<h1>Панель администратора</h1>
+
+<!-- Trainers Section -->
+<div id="trainers">
+    <h2>Тренер</h2>
+    <form id="trainer-form" onsubmit="return submitTrainerForm()">
+        <input type="hidden" id="trainer-id">
+        <input type="text" id="trainer-name" placeholder="Trainer Name">
+        <button type="submit">Save</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Специальность</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody id="trainer-list"></tbody>
+    </table>
 </div>
-<div id="schedule-info">
-    <h2>Schedules</h2>
-    <select id="schedule-dropdown">
-        <option value="">Select Schedule</option>
-        <!-- Schedule dropdown menu will be populated dynamically -->
-    </select>
+
+<!-- Schedules Section -->
+<div id="schedules">
+    <h2>Расписания</h2>
+    <form id="schedule-form" onsubmit="return submitScheduleForm()">
+        <input type="hidden" id="schedule-id">
+        <input type="text" id="schedule-day" placeholder="Day">
+        <input type="text" id="schedule-time" placeholder="Time">
+        <button type="submit">Save</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>День</th>
+            <th>Время</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody id="schedule-list"></tbody>
+    </table>
 </div>
-<div id="faculty-info">
-    <h2>Faculties</h2>
-    <select id="faculty-dropdown">
-        <option value="">Select Faculty</option>
-        <!-- Faculty dropdown menu will be populated dynamically -->
-    </select>
+
+<!-- Members Section -->
+<div id="members">
+    <h2>Пользователи</h2>
+    <form id="member-form" onsubmit="return submitMemberForm()">
+        <input type="hidden" id="member-id">
+        <input type="text" id="member-name" placeholder="Member Name">
+        <input type="text" id="member-email" placeholder="Email">
+        <input type="text" id="member-package" placeholder="Membership Package">
+        <button type="submit">Save</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Электронная почта</th>
+            <th>Пакет</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody id="member-list"></tbody>
+    </table>
 </div>
-<button onclick="saveSelection()">Save Selection</button>
-</form>
+
+<!-- Faculties Section -->
+<div id="faculties">
+    <h2>отдел обучения</h2>
+    <form id="faculty-form" onsubmit="return submitFacultyForm()">
+        <input type="hidden" id="faculty-id">
+        <input type="text" id="faculty-name" placeholder="Faculty Name">
+        <button type="submit">Save</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody id="faculty-list"></tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", fetchInitialData);
+</script>
 </body>
 </html>

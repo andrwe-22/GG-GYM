@@ -5,6 +5,7 @@ import com.example.demo.repositories.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,5 +32,17 @@ public class FacultyService {
 
     public void deleteFaculty(Long id) {
         facultyRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Faculty saveOrUpdate(Faculty faculty) {
+        return facultyRepository.save(faculty);
+    }
+
+    @Transactional
+    public void deleteTrainer(Long id) {
+
+           facultyRepository.deleteById(id);
+
     }
 }

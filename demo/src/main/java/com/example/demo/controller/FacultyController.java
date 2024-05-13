@@ -4,9 +4,7 @@ import com.example.demo.model.Faculty;
 import com.example.demo.services.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +24,28 @@ public class FacultyController {
         List<Faculty> faculties = facultyService.getAllFaculties();
         return ResponseEntity.ok(faculties);
     }
+
+    @PostMapping("/")
+    public ResponseEntity<Faculty> createOrUpdateFaculty(@RequestBody Faculty faculty) {
+        Faculty savedFaculty = facultyService.saveOrUpdate(faculty);
+        return ResponseEntity.ok(savedFaculty);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFaculty(@PathVariable Long id) {
+        facultyService.deleteFaculty(id);  // Ensure the service method correctly handles the deletion.
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Faculty> updateFaculty(@PathVariable Long id, @RequestBody Faculty facultyDetails) {
+        return facultyService.getFacultyById(id)
+                .map(faculty -> {
+                    faculty.setName(facultyDetails.getName());
+                    // Update other fields as needed
+                    Faculty updatedFaculty = facultyService.saveOrUpdate(faculty);
+                    return ResponseEntity.ok(updatedFaculty);
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }

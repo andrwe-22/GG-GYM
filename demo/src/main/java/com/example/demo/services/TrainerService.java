@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.model.Member;
 import com.example.demo.model.Trainer;
 import com.example.demo.repositories.TrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,6 @@ public class TrainerService {
     public void deleteTrainer(Long id) {
         trainerRepository.deleteById(id);
     }
+
+
 }

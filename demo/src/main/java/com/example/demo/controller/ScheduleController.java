@@ -49,4 +49,16 @@ public class ScheduleController {
         return ResponseEntity.ok(schedules);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Schedule> updateSchedule(@PathVariable Long id, @RequestBody Schedule scheduleDetails) {
+        return scheduleService.getScheduleById(id)
+                .map(schedule -> {
+                    schedule.setDay(scheduleDetails.getDay());
+                    schedule.setTime(scheduleDetails.getTime());
+                    Schedule updatedSchedule = scheduleService.saveSchedule(schedule);
+                    return ResponseEntity.ok(updatedSchedule);
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }
