@@ -15,3 +15,5 @@
 
 # Documentation
 * [use case diagrams](https://github.com/andrwe-22/GG-Gym/blob/54b37ce3823e6c3bcbd3939a08a2d5de3c13329b/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0/image.png)
+* [Diagram State](https://github.com/andrwe-22/GG-Gym/blob/46bbfbfe5a4af908c86ceae1c942c9f487e06254/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0/state%20(1).png)
+* [Class Diagram](https://github.com/andrwe-22/GG-Gym/blob/46bbfbfe5a4af908c86ceae1c942c9f487e06254/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20(Class%20Diagram)%20(1).png)
