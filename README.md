@@ -14,6 +14,4 @@
 * MySQL
 
 # Documentation
-* [use case diagrams]([https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/image.png](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0/image.png)
-* [Diagram State]([https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/state.png](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0/state%20(1).png)
-* [Class Diagrams]([https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20(Class%20Diagram).png](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2%20(Class%20Diagram)%20(1).png)
+* [use case diagrams](https://github.com/andrwe-22/GG-Gym/blob/54b37ce3823e6c3bcbd3939a08a2d5de3c13329b/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0/image.png)
