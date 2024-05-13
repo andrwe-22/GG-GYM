@@ -14,4 +14,4 @@
 * MySQL
 
 # Documentation
-*![use case diagrams] (https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/image.png)
+*[use case diagrams](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/image.png)
