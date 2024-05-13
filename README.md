@@ -5,7 +5,7 @@
 
 ![Logo](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/gg-high-resolution-logo.png)
 # Сйет
-![Как выглядит]([https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/gg-high-resolution-logo.png](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/%D0%A1%D0%B0%D0%B9%D1%82.gif))
+![Как выглядит](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/%D0%A1%D0%B0%D0%B9%D1%82.gif)
 
 # Средства реализации
 * Java “Spring boot”
