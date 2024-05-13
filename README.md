@@ -4,3 +4,10 @@
  "GG Gym" стремится не просто предоставлять услуги физической тренировки, но и эффективно управлять этим процессом, обеспечивая клиентам наивысший уровень удовлетворенности и результатов
 
 ![Logo](https://github.com/andrwe-22/GG-Gym/blob/GG-Gym/gg-high-resolution-logo.png)
+
+#Средства реализации
+Java “Spring boot”
+	JavaScript
+	HTML, CSS 
+MySQL
+
